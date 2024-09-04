@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import http from 'http';
 import { Server } from 'socket.io';
+import authRoutes from './routes/auth';
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ const io = new Server(server);
 
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');
